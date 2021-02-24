@@ -5,7 +5,7 @@ Laravel middleware built for json request enforcing. Just enable on any requests
 ## Installation
 Install it with composer:
 
-`composer install thiagoprz/laravel-enforce-json`
+`composer require thiagoprz/laravel-enforce-json`
 
 Enable middleware on Http Kernel (app/Http/Kernel.php):
 
