@@ -2,6 +2,7 @@
 namespace Thiagoprz\EnforceJson;
 
 use Illuminate\Http\Request;
+use \Illuminate\Http\JsonResponse;
 
 /**
  * Class EnforceJson
@@ -12,11 +13,14 @@ class EnforceJson
     /**
      * @param Request $request
      * @param \Closure $next
-     * @return \Illuminate\Http\JsonResponse
+     * @param boolean $allowUpload
+     * @return JsonResponse
      */
-    public function handle(Request $request, \Closure $next)
+    public function handle(Request $request, \Closure $next, $allowUpload = false): JsonResponse
     {
-        if ($request->header('Accept') !== 'application/json' || $request->getContentType() !== 'json') {
+        $contentType = $request->getContentType();
+        $validRequest = $request->header('Accept') == 'application/json' && ($contentType == 'json' || ($allowUpload && strpos($contentType, 'multipart/form-data') !== false));
+        if (!$validRequest) {
             return response()->json(__('Invalid request.'), 400);
         }
         return $next($request);
