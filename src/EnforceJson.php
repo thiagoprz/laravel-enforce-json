@@ -18,8 +18,9 @@ class EnforceJson
      */
     public function handle(Request $request, \Closure $next, $allowUpload = false): JsonResponse
     {
-        $contentType = $request->getContentType();
-        $validRequest = $request->header('Accept') == 'application/json' && ($contentType == 'json' || ($allowUpload && strpos($contentType, 'multipart/form-data') !== false));
+        $applicationJson = 'application/json';
+        $contentType = $request->header('Content-Type');
+        $validRequest = $request->header('Accept') == $applicationJson && ($contentType == $applicationJson || ($allowUpload && strpos($contentType, 'multipart/form-data') !== false));
         if (!$validRequest) {
             return response()->json(__('Invalid request.'), 400);
         }

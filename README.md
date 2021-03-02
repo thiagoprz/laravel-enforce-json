@@ -21,3 +21,17 @@ class Kernel extends HttpKernel
         'json' => EnforceJson::class,
     ];
 ```
+
+Apply the middleware on desired routes:
+
+`api.php` or `web.php`
+```
+<?php
+...
+// Example: user login
+Route::post('/register', 'AuthenticationController@register')->middleware('json');
+...
+// Example: upload of photo (note that you must pass true as first argument to the middleware allowing uploads) 
+Route::post('/uploadAvatar', 'ProfileController@uploadAvatar')->middleware('json:true');
+...
+```
