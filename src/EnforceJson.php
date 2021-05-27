@@ -3,6 +3,7 @@ namespace Thiagoprz\EnforceJson;
 
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 /**
  * Class EnforceJson
@@ -16,7 +17,7 @@ class EnforceJson
      * @param boolean $allowUpload
      * @return JsonResponse
      */
-    public function handle(Request $request, \Closure $next, $allowUpload = false): JsonResponse
+    public function handle(Request $request, \Closure $next, $allowUpload = false)
     {
         $applicationJson = 'application/json';
         $contentType = $request->header('Content-Type');
