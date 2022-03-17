@@ -10,8 +10,17 @@
             "Thiagoprz\\EnforceJson\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Thiagoprz\\EnforceJson\\Tests\\": "tests"
+        }
+    },
     "require": {
         "php": "^7.1.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "6.x-dev",
+        "phpunit/phpunit": "9.5.x-dev"
     },
     "license": "MIT",
     "authors": [
